@@ -1,11 +1,24 @@
 # Lazy Days Spa Client
 
-### A React client for the "Lazy Days Spa" app in the Udemy course "React Query: Server State Management for React"
+## 규모가 큰 앱에서 React Query
 
-## Installing
+- 큰 앱에서 쿼리에서 데이터를 새로 고침하게끔 제어할 수 있어야 한다.
+- 인증과정에서 리액트쿼리
 
-Run `npm install`
+## React Query ESLint 플러그인
 
-## Starting the client
+### @tanstack/query/prefer-query-object-syntax
 
-Run `npm start`. The app will be found at [http://localhost:3000]. You will probably want to make sure the server is running as well.
+현재 useQuery에 인수를 제공하는 방법은 두 가지입니다:
+
+인수 여러 개:
+
+```
+useQuery(queryKey, queryFn, { onSuccess,});
+```
+
+객체 인수 한 개:
+
+```
+useQuery({ queryKey, queryFn, onSuccess,});
+```

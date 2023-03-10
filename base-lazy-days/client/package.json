@@ -69,5 +69,8 @@
   },
   "jest": {
     "resetMocks": false
+  },
+  "devDependencies": {
+    "@tanstack/eslint-plugin-query": "^4.26.2"
   }
 }
