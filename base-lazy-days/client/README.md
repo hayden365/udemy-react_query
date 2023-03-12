@@ -22,3 +22,14 @@ useQuery(queryKey, queryFn, { onSuccess,});
 ```
 useQuery({ queryKey, queryFn, onSuccess,});
 ```
+
+## TypeScript
+
+타입스크립트 에러를 무시하는 기능
+
+- @ts-nocheck : 파일의 가장위에서 작성
+- @ts-ignore : 특정 줄을 위에 작
+
+## 커스텀 훅을 이용한 데이터 액세스
+
+앱의 크기가 커지고, 다수의 컴포넌트에서 데이터를 액세스해야하는 경우 useQuery 호출을 재작성할 필요가 없도록 커스텀 훅을 만들어서 사용하자.

@@ -74,7 +74,7 @@
     ],
     "react/jsx-one-expression-per-line": "off",
     "react/jsx-curly-newline": "off",
-    "@tanstack/query/exhuastive-deps": "error",
+    "@tanstack/query/exhaustive-deps": "error",
     "@tanstack/query/prefer-query-object-syntax": "error"
   }
 }

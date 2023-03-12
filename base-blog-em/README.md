@@ -11,7 +11,7 @@ isFetching에서는 캐시된 데이터의 쿼리가 호출 중일 수 있습니
 isLoading은 쿼리가 만들어지지도 않았을 수 있어서 캐시된 데이터도 없습니다.  
 react query에서 error로 명시하기까지 기본 세번은 시도를 한 후 error를 정의합니다.
 
-- isFetching : aynce쿼리 함수가 해결되지 않았을 때, 참에 해당합니다. 아직 데이터를 가져오는 중임을 나타냅니다.
+- isFetching : async쿼리 함수가 해결되지 않았을 때, 참에 해당합니다. 아직 데이터를 가져오는 중임을 나타냅니다.
 - isLoading : isFetching이 참이면서 쿼리에 대해 캐시된 데이터 없는 상태를 뜻합니다. isLoading이 참이면 isFetching은 항상 참이 됩니다.
 
 ### staleTime, cacheTime
@@ -34,5 +34,4 @@ useQuery와 비슷하지만 다음과 같은 차이점이 있습니다.
 
 - mutation 함수를 return 합니다.
 - 쿼리키를 필요로 하지 않습니다.
-- isLoading이지만, isFetching은 아닙니다.
 - 기본적으로 재시도는 없습니다.(useQuery는 3번재시도하는 것에 비해)
