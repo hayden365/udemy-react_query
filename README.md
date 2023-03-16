@@ -2,11 +2,12 @@
 
 Code to support the Udemy course [React Query: Server State Management in React](https://www.udemy.com/course/learn-react-query/?couponCode=REACT-QUERY-GITHUB)
 
-react query 사용해보기
-[1.Blog-em Ipsum](#blog-em-ipsum)
-[2.Infinite Swapi](#infinite-swapi)
-[3.Lazy Days Spa Client](#lazy-days-spa-client)
-[4.Pre-fetching and Pagination](#pre-fetching-and-pagination)
+## 목차
+
+[#1 Blog-em Ipsum](#blog-em-ipsum)  
+[#2 Infinite Swapi](#infinite-swapi)  
+[#3 Lazy Days Spa Client](#lazy-days-spa-client)  
+[#4 Pre-fetching and Pagination](#pre-fetching-and-pagination)
 
 # Blog-em Ipsum
 
@@ -228,3 +229,30 @@ export const queryClient = new QueryClient({
 ```
 
 # Pre-fetching and Pagination
+
+|                 | where to use?         | data from? | added to cache? |
+| --------------- | --------------------- | ---------- | --------------- |
+| prefetchQuery   | method to queryClient | server     | yes             |
+| setQueryData    | method to queryCLient | client     | yes             |
+| placeholderData | option to useQuery    | client     | no              |
+| initialData     | option to useQuery    | client     | yes             |
+
+## Prefetch
+
+무한스크롤을 구현하면서 사용자가 현재 페이지를 보고있는 동안 다음페이지 데이터를 미리 가져오는 prefetch를 구현했습니다.  
+prefetch를 사용하는 또다른 예시는 다음과 같습니다.  
+홈페이지 로드 중 높은 비율이 treatments탭으로 이어진다는 가정 하에 홈페이지에서 treatments탭의 내용을 prefetch하는 것입니다.  
+이떄, prefetch한 데이터의 cacheTime이 5분이라면, 5분안에 사용자가 treatments탭을 클릭했을 때, 사용자는 prefetch데이터를 바로 확인할 수 있게 됩니다.  
+여기서 중요한점은 불러온 prefetch 데이터는 다시 한번 더 로드 됩니다.(최신의 데이터를 위해서)  
+만약 캐시타임(5분)안에 treatments탭으로 이동하지 않았을 경우 해당 데이터는 가비지 컬렉션으로 수집됩니다.  
+기존의 useQuery역시 페칭과 리페칭 등의 작업이 필요한 쿼리를 생성하지만 prefetchQuery는 일회성이라는 차이점이 있습니다.  
+따라서 prefetchQuery는 Home 컴포넌트에서 실행되어야 합니다.  
+참고로, Home컴포넌트가 그다지 동적이지않아서, 리랜더가 많지 않고, treatments탭의 데이터 또한 동적이지 않아서 가능한 전략이기도 합니다.
+만약 걱정된다면, staleTime과 cacheTime을 관리해주는 옵션을 추가해주면 됩니다. 그러면 모든 트리거마다 리페칭되지 않도록 통제할 수 있습니다.
+
+```
+export function usePrefetchTreatments(): void {
+  const queryClient = useQueryClient();
+  queryClient.prefetchQuery(queryKeys.treatments, getTreatments);
+}
+```
